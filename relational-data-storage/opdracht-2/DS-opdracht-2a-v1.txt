@@ -1,0 +1,14 @@
+Rapport opdracht 2a:
+1. Geen foreign key constraints.
+2. Entiteit namen zijn in meervoud, enkelvoud is beter.
+3. Inconsistente naamgeving van foreign keys. mhl_contacts heeft department i.p.v. departments_id, mhl_detaildefs heeft heeft group_ID i.p.v. detailgroups_id, etc.
+4. MHL brands is een losse entiteit.
+5. Sommige foreign_keys ontbreken. pc_lat_long heeft geen suppliers_id, mhl_membertypes heeft geen suppliers_id, etc.
+6. Sommige attributen zijn niet goed gedefinieerd. Proptype SET in mhl_propertytypes is niet gedefineerd. 
+7. Sommige datatypes zijn fout. mhl_hitcount heeft voor het year attribuut SMALLINT(6) en voor month TINYINT(4) als datatype.
+8. Sommige attributen worden dubbel opgeslagen en lijdt dus tot redundantie. mhl_detaildefs verwijst naar mhl_propertytypes d.m.v. een foreign key maar slaat property_DEF en display_name op terwijl deze in mhl_propertytypes al is opgeslagen.
+9. mhl_yn_properties en mhl_properties lijken hetzelfde op te slaan alleen bij mhl_properties staat er html code opgeslagen in de content text veld.
+10. pc_lat_long bevat geografische coördinaten maar er lijkt geen relatie te zijn met andere tabellen. 
+11. mhl_suppliers_mhl_rubriek_view lijkt een combinatie te zijn van entiteiten omdat deze verwijst naar het mhl_rubriek_view_ID maar deze entiteit bestaat niet.
+12. Vervolg punt op punt 11. mhl_rubrieken heeft een parent attribuut en het lijkt erop dat dit oorspronkelijk een verwijzing was naar een andere entiteit die mogelijk is verwijdert. Waarschijnlijk is dit de entiteit die is gecombineerd zoals besproken is in punt 11.
+13. Verschillende VARCHAR-velden hebben verschillende lengstes voor vergelijkbare gegevens. mhl_communes gebruikt voor de name varchar(40) en mhl_suppliers gebruikt voor name varchar(75)
