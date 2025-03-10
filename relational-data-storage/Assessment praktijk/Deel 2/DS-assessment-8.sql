@@ -1,0 +1,2 @@
+SELECT * FROM Track
+WHERE Name LIKE 'All%'

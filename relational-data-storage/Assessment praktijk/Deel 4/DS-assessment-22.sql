@@ -1,0 +1,4 @@
+SELECT E.FirstName, E.LastName
+FROM Employee E
+WHERE DATEDIFF(CURRENT_DATE, E.HireDate) >= 15
+ORDER BY E.LastName ASC
