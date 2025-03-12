@@ -1,0 +1,12 @@
+SHOW KEYS FROM entity_name WHERE key_name = 'name'; -> handig om te checken welke keys er zijn maar ook andere indexen. Doet hetzelfde als SHOW INDEXES.
+
+SELECT DISTINCT name_ID (fk)
+FROM entity_name
+WHERE name_ID NOT IN (SELECT id FROM other entity where the fk originates); use this to check which IDs are referenced.
+
+foreign keys van verschillende tabellen mogen niet hetzelfde heten --> propertytype_ID in detaildefs en properties vanuit propertytypes
+
+SET SQL_SAFE_UPDATES = 0; disables safe update, got this error: 14:06:28	UPDATE mhl_properties SET supplier_ID = 9620 WHERE supplier_ID NOT IN (SELECT id FROM mhl_suppliers)	Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.	0.0028 sec
+
+DROP INDEX index_column_name ON table_name
+CREATE INDEX index_column_name ON table_name (column_name)
