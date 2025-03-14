@@ -10,3 +10,7 @@ SET SQL_SAFE_UPDATES = 0; disables safe update, got this error: 14:06:28	UPDATE 
 
 DROP INDEX index_column_name ON table_name
 CREATE INDEX index_column_name ON table_name (column_name)
+
+SELECT TABLE_NAME, CONSTRAINT_NAME
+FROM information_schema.KEY_COLUMN_USAGE
+WHERE TABLE_SCHEMA = 'db_name' AND REFERENCED_TABLE_NAME IS NOT NULL; ->laat alle constraints zien van een schema

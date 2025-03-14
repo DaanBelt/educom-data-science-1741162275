@@ -1,11 +1,115 @@
+-- The performed script:
+ALTER TABLE mhl_detaildefs DROP FOREIGN KEY group_ID;
+ALTER TABLE mhl_detaildefs DROP FOREIGN KEY propertytype_ID;
+ALTER TABLE mhl_properties DROP FOREIGN KEY properties_propertytype_ID;
+ALTER TABLE mhl_properties DROP FOREIGN KEY properties_supplier_ID;
+ALTER TABLE mhl_yn_properties DROP FOREIGN KEY yn_propertytype_ID;
+ALTER TABLE mhl_yn_properties DROP FOREIGN KEY yn_supplier_ID;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY company;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY membertype;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY city_ID;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY p_city_ID;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY suppliers_postcode;
+ALTER TABLE mhl_suppliers DROP FOREIGN KEY suppliers_p_postcode;
+ALTER TABLE mhl_hitcount DROP FOREIGN KEY hitcount_supplier_ID;
+ALTER TABLE mhl_contacts DROP FOREIGN KEY contacts_supplier_ID;
+ALTER TABLE mhl_contacts DROP FOREIGN KEY department_supplier_ID;
+ALTER TABLE mhl_suppliers_mhl_rubriek_view DROP FOREIGN KEY rubriek_view_supplier_ID;
+ALTER TABLE mhl_suppliers_mhl_rubriek_view DROP FOREIGN KEY rubrieken_rubriek_view_ID;
+ALTER TABLE mhl_cities DROP FOREIGN KEY commune_ID;
+ALTER TABLE mhl_communes DROP FOREIGN KEY district_ID;
+ALTER TABLE mhl_districts DROP FOREIGN KEY country_ID;
+
+
+ALTER TABLE mhl_detaildefs 
+ADD CONSTRAINT group_ID
+FOREIGN KEY (group_ID) REFERENCES mhl_detailgroups(id);
+
+ALTER TABLE mhl_detaildefs 
+ADD CONSTRAINT propertytype_ID
+FOREIGN KEY (propertytype_ID) REFERENCES mhl_propertytypes(id);
+
+ALTER TABLE mhl_properties
+ADD CONSTRAINT properties_propertytype_ID
+FOREIGN KEY (propertytype_ID) REFERENCES mhl_propertytypes(id);
+
+ALTER TABLE mhl_properties
+ADD CONSTRAINT properties_supplier_ID
+FOREIGN KEY (supplier_ID) REFERENCES mhl_suppliers(id);
+
+ALTER TABLE mhl_yn_properties
+ADD CONSTRAINT yn_propertytype_ID
+FOREIGN KEY (propertytype_ID) REFERENCES mhl_propertytypes(id);
+
+ALTER TABLE mhl_yn_properties
+ADD CONSTRAINT yn_supplier_ID
+FOREIGN KEY (supplier_ID) REFERENCES mhl_suppliers(id);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT company
+FOREIGN KEY (company) REFERENCES mhl_companies(id);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT membertype
+FOREIGN KEY (membertype) REFERENCES mhl_membertypes(id);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT city_ID
+FOREIGN KEY (city_ID) REFERENCES mhl_cities(id);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT p_city_ID
+FOREIGN KEY (p_city_ID) REFERENCES mhl_cities(id);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT suppliers_postcode
+FOREIGN KEY (postcode) REFERENCES pc_lat_long(pc6);
+
+ALTER TABLE mhl_suppliers
+ADD CONSTRAINT suppliers_p_postcode
+FOREIGN KEY (p_postcode) REFERENCES pc_lat_long(pc6);
+
+ALTER TABLE mhl_hitcount
+ADD CONSTRAINT hitcount_supplier_ID
+FOREIGN KEY (supplier_ID) REFERENCES mhl_suppliers(id);
+
+ALTER TABLE mhl_contacts
+ADD CONSTRAINT contacts_supplier_ID
+FOREIGN KEY (supplier_ID) REFERENCES mhl_suppliers(id);
+
+ALTER TABLE mhl_contacts
+ADD CONSTRAINT department_supplier_ID
+FOREIGN KEY (department) REFERENCES mhl_departments(id);
+
+ALTER TABLE mhl_suppliers_mhl_rubriek_view
+ADD CONSTRAINT rubrieken_rubriek_view_ID
+FOREIGN KEY (mhl_rubriek_view_ID) REFERENCES mhl_rubrieken(id);
+
+ALTER TABLE mhl_suppliers_mhl_rubriek_view
+ADD CONSTRAINT rubriek_view_supplier_ID
+FOREIGN KEY (mhl_suppliers_ID) REFERENCES mhl_suppliers(id);
+
+ALTER TABLE mhl_cities
+ADD CONSTRAINT commune_ID
+FOREIGN KEY (commune_ID) REFERENCES mhl_communes(id);
+
+ALTER TABLE mhl_communes
+ADD CONSTRAINT district_ID
+FOREIGN KEY (district_ID) REFERENCES mhl_districts(id);
+
+ALTER TABLE mhl_districts
+ADD CONSTRAINT country_ID
+FOREIGN KEY (country_ID) REFERENCES mhl_countries(id);
+
+
 --Drop constraint queries:
 --mhl_detaildefs
 ALTER TABLE mhl_detaildefs DROP FOREIGN KEY group_ID
 ALTER TABLE mhl_detaildefs DROP FOREIGN KEY propertytype_ID
 
 --mhl_properties
-ALTER TABLE mhl_properties DROP FOREIGN KEY idx_propertytype_ID
-ALTER TABLE mhl_properties DROP FOREIGN KEY properties_supplier_ID
+ALTER TABLE mhl_properties DROP FOREIGN KEY properties_propertytype_ID
+ALTER TABLE mhl_properties DROP FOREIGN KEY supplier_ID
 
 --mhl_yn_properties
 ALTER TABLE mhl_yn_properties DROP FOREIGN KEY yn_propertytype_ID
@@ -38,8 +142,6 @@ ALTER TABLE mhl_communes DROP FOREIGN KEY district_ID
 
 --mhl_communes
 ALTER TABLE mhl_districts DROP FOREIGN KEY country_ID
-
-
 
 
 --Add constraint queries:
